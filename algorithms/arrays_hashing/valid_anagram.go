@@ -11,8 +11,7 @@ func isAnagram(s string, t string) bool {
 	}
 
 	// complexity O(n)
-	countLettersWord1 := map[rune]int{}
-	countLettersWord2 := map[rune]int{}
+	countLettersWord1, countLettersWord2 := map[rune]int{}, map[rune]int{}
 	for idx, ch := range s {
 		countLettersWord1[ch]++
 		countLettersWord2[rune(t[idx])]++
