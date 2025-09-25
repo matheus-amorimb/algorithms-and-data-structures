@@ -16,9 +16,10 @@ func main() {
 func groupAnagrams(strs []string) [][]string {
 	anagramsMap := map[[26]int][]string{}
 	for _, str := range strs {
-		arrayKey := [26]int{}
+		var arrayKey [26]int
 		for _, char := range str {
-			idx := int(char) - 97
+			// idx := int(char) - 97
+			idx := char - 'a'
 			arrayKey[idx]++
 		}
 		anagramsMap[arrayKey] = append(anagramsMap[arrayKey], str)
