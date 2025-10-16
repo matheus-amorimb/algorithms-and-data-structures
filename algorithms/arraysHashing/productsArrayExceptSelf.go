@@ -1,8 +1,9 @@
 package main
 
 func main() {
-	input := []int{1, 0}
-	output := productExceptSelf(input)
+	input := []int{-1, 0, 1, 2, 3}
+	// output := productExceptSelf(input)
+	output := productExceptSelfOptimalSolution(input)
 	for _, value := range output {
 		print(value, ", ")
 	}
@@ -35,6 +36,30 @@ func productExceptSelf(nums []int) []int {
 		} else {
 			output[idx] = totalProduct / num
 		}
+	}
+
+	return output
+}
+
+// prefix/sufix technique
+func productExceptSelfOptimalSolution(nums []int) []int {
+	lenNums := len(nums)
+
+	prefix := make([]int, len(nums))
+	prefix[0] = 1
+	for i := 1; i < lenNums; i++ {
+		prefix[i] = prefix[i-1] * nums[i-1]
+	}
+
+	sufix := make([]int, lenNums)
+	sufix[lenNums-1] = 1
+	for i := lenNums - 2; i >= 0; i-- {
+		sufix[i] = sufix[i+1] * nums[i+1]
+	}
+
+	output := make([]int, lenNums)
+	for i := 0; i < lenNums; i++ {
+		output[i] = prefix[i] * sufix[i]
 	}
 
 	return output
