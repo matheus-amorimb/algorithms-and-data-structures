@@ -17,6 +17,7 @@ type Solution struct{}
 
 func Encode(strs []string) string {
 	encodedStr := ""
+	//O(m)
 	for _, str := range strs {
 		encodedStr += strconv.Itoa(len(str)) + "#" + str
 	}
@@ -24,7 +25,6 @@ func Encode(strs []string) string {
 }
 
 func Decode(str string) []string {
-	println(str)
 	decodedStrs := []string{}
 	i := 0
 	for i < len(str) {
