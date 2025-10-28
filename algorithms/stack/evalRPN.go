@@ -16,21 +16,21 @@ func evalRPN(tokens []string) int {
 		"/": Divide,
 	}
 
-	tokensInOperation := []int{}
+	stack := []int{}
 	for _, token := range tokens {
 		number, err := strconv.Atoi(string(token))
 		if err != nil {
 			operation := tokenOperatorToOperation[token]
-			a := tokensInOperation[len(tokensInOperation)-2]
-			b := tokensInOperation[len(tokensInOperation)-1]
-			tokensInOperation = tokensInOperation[:len(tokensInOperation)-2]
-			tokensInOperation = append(tokensInOperation, operation(a, b))
+			a := stack[len(stack)-2]
+			b := stack[len(stack)-1]
+			stack = stack[:len(stack)-2]
+			stack = append(stack, operation(a, b))
 		} else {
-			tokensInOperation = append(tokensInOperation, number)
+			stack = append(stack, number)
 		}
 	}
 
-	return tokensInOperation[0]
+	return stack[0]
 }
 
 func Add(val1 int, val2 int) int {
