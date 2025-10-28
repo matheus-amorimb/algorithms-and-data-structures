@@ -27,7 +27,7 @@ func generateParenthesis(n int) []string {
 			stack = stack[:len(stack)-1]
 		}
 
-		if len(stack) == 2*n {
+		if open == n && close == n {
 			paranthesis := strings.Join(stack, "")
 			output = append(output, paranthesis)
 			return
